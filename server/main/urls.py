@@ -3,6 +3,8 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
+from django.views.static import serve
+from django.urls import re_path
 
 urlpatterns = [
     path('a/', admin.site.urls),
@@ -17,4 +19,13 @@ urlpatterns = [
     path('evaluation?m=<str:message>', views.list_evaluation, name='list-evaluation'),
     path('evaluation/<int:porter_id>', views.evaluation, name='evaluation'),
     path('', views.student_signin)
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+urlpatterns += [
+    re_path(r'^media/(?P<path>.*)$', serve, {
+        'document_root': settings.MEDIA_ROOT,
+    }),
+]
