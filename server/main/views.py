@@ -64,8 +64,8 @@ def add_porter(request):
       image = image, 
       is_admin = is_admin
     )
-    return render(request, 'porterFill.html', {'message': "Porter added"})
-  return render(request, 'porterFill.html')
+    return render(request, 'PorterFill.html', {'message': "Porter added"})
+  return render(request, 'PorterFill.html')
 
 def list_evaluation(request, message): 
   context = {
